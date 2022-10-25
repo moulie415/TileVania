@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 487157116}
   - component: {fileID: 487157115}
   - component: {fileID: 487157114}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlatformsTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6725,6 +6725,18 @@ PrefabInstance:
     - target: {fileID: 1682955239, guid: 02342efed5780ea47b5fb9aa29ff6ae0, type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682955239, guid: 02342efed5780ea47b5fb9aa29ff6ae0, type: 3}
+      propertyPath: m_GravityScale
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682955239, guid: 02342efed5780ea47b5fb9aa29ff6ae0, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210761137489846348, guid: 02342efed5780ea47b5fb9aa29ff6ae0, type: 3}
+      propertyPath: jumpSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6935623686825368904, guid: 02342efed5780ea47b5fb9aa29ff6ae0, type: 3}
       propertyPath: m_Name
