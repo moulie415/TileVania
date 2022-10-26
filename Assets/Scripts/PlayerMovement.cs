@@ -11,8 +11,10 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
     CapsuleCollider2D collider;
     
-   [SerializeField] float runSpeed = 10f;
-   [SerializeField] float jumpSpeed = 15f;
+    [SerializeField] float runSpeed = 10f;
+    [SerializeField] float jumpSpeed = 15f;
+    [SerializeField] float climbSpeed = 7f;
+    float gravityScaleAtStart;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         collider = GetComponent<CapsuleCollider2D>();
+
+        gravityScaleAtStart = myRigidBody.gravityScale;
     }
 
     // Update is called once per frame
@@ -27,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipSprite();
+        ClimbLadder();
     }
 
     void OnMove(InputValue value)
@@ -44,6 +49,34 @@ public class PlayerMovement : MonoBehaviour
         {
             myRigidBody.velocity += new Vector2(0f, jumpSpeed);
         }
+    }
+
+    void ClimbLadder()
+    {
+        
+        bool isClimbing = collider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        
+
+        if (!isClimbing)
+        {
+
+            myRigidBody.gravityScale = gravityScaleAtStart;
+            myAnimator.SetBool("isClimbing", false);
+            return;
+        }
+
+        myAnimator.SetBool("isClimbing", isClimbing);
+
+        Vector2 climbVelocity = new Vector2(myRigidBody.velocity.x, moveInput.y * climbSpeed);
+        myRigidBody.velocity = climbVelocity;
+        myRigidBody.gravityScale = 0f;
+
+        bool playerHasVerticalSpeed = Mathf.Abs(myRigidBody.velocity.y) > Mathf.Epsilon;
+        myAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
+        
+
+        
+            
     }
 
     void Run()
@@ -65,4 +98,6 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
         }
     }
+
+
 }
