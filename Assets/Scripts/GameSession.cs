@@ -42,9 +42,9 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    public void IncrementScore()
+    public void IncrementScore(int points)
     {
-        playerScore += 100;
+        playerScore += points;
         scoreText.text = playerScore.ToString();
     }
 
