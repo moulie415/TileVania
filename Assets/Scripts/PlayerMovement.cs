@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 15f;
     Vector2 moveInput;
     Rigidbody2D rb;
+    Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
