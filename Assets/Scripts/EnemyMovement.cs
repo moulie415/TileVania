@@ -20,4 +20,5 @@ public class EnemyMovement : MonoBehaviour
         moveSpeed = -moveSpeed;
         transform.localScale = new Vector2(-Mathf.Sign(rb.linearVelocity.x), 1f);
     }
+
 }
